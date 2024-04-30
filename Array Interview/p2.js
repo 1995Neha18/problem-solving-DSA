@@ -1,52 +1,68 @@
-// let arr = [2, 4, 5, 11, 8];
+// function validParenthesis(str) {
+//   let result = [];
+//   let obj = {
+//     "(": ")",
+//     "{": "}",
+//     "[": "]",
+//   };
 
-//Approach - 1
-function secMax(arr) {
-  // arr.sort((a, b) => a - b);
-  let Largest = 1;
-  let secLargest = 1;
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] > Largest) {
-      secLargest = Largest;
-      Largest = arr[i];
-    } else if (arr[i] !== Largest && arr[i] > secLargest) {
-      secLargest = arr[i];
+//   for (let i = 0; i < str.length; i++) {
+//     if (obj[str[i]]) {
+//       result.push(obj[str[i]]);
+//     } else if (str[i] == ")" || str[i] == "}" || str[i] == "]") {
+//       if (result[result.length - 1] == str[i]) {
+//         result.pop();
+//       } else {
+//         console.log("Unbalanced");
+//         return;
+//       }
+//     }
+//   }
+//   console.log("Balanced");
+// }
+// validParenthesis("(())");
+// validParenthesis("(()]");
+// validParenthesis("[[]]");
+
+// [ "[",  ]
+
+function validParenthesis(str) {
+  let obj = {
+    "(": ")",
+    "{": "}",
+    "[": "]",
+  };
+  let result = [];
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] == "(" || str[i] == "{" || str[i] == "[") {
+      result.push(obj[str[i]]);
+      // console.log(obj[str[i]]);
+    } else if (
+      (str[i] == ")" && str[i] == result[result.length - 1]) ||
+      (str[i] == "}" && str[i] == result[result.length - 1]) ||
+      (str[i] == "]" && str[i] == result[result.length - 1])
+    ) {
+      result.pop();
     }
+    // else {
+    //   console.log("Unbalanced");
+    //   return;
+    // }
   }
-  return secLargest;
+  console.log(result);
+  // if (result.length == 0) {
+  //   console.log("Balanced");
+  //   return;
+  // }
+  // console.log("Unbalanced");
 }
+// validParenthesis("(())");
+// validParenthesis("(()]");
+// validParenthesis("[()]");
 
-console.log(secMax([2, 4, 5, 11, 8]));
-
-//Approach - 2 (with in-built function)
-function secMax(arr) {
-  // arr.sort((a, b) => a - b); // [2,4,5,8,11]
-  let Largest = -1;
-  let secLargest = -1;
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] > Largest) {
-      secLargest = Largest;
-      Largest = arr[i];
-    }
-  }
-  return secLargest;
-}
-console.log(secMax([2, 4, 5, 11, 8]));
-
-// { Dry Run }
-// Initial values: Largest = -1, secLargest = -1
-// Iteration 1: arr[0] = 2
-// 2 > -1? Yes
-// secLargest = Largest => secLargest = -1 & Largest = 2
-// Iteration 2: arr[1] = 4
-// 4 > 2? Yes
-// secLargest = Largest => secLargest = 2 & Largest = 4
-// Iteration 3: arr[2] = 5
-// 5 > 4? Yes
-// secLargest = Largest => secLargest = 4 & Largest = 5
-// Iteration 4: arr[3] = 11
-// 11 > 5? Yes
-// secLargest = Largest => secLargest = 5 & Largest = 11
-// Iteration 5: arr[4] = 8
-// 8 > 11? No
-// Loop ends
+// validParenthesis("(((((((((())))))))))"); // Balanced
+// validParenthesis("(((((((((())))))]]]]"); // Unbalanced
+// validParenthesis("[()]{}{[()()]()}"); // Balanced
+// validParenthesis("{[(]}"); // Unbalanced
+// validParenthesis("{(([])[])[]]}"); // Unbalanced
+validParenthesis("[one[two[three[four[five[six[seven[eight[nine[ten]]]]]]]]]]"); // Balanced
