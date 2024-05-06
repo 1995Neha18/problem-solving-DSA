@@ -32,3 +32,20 @@ console.log("hi");
 console.log(fibi(5));
 console.log(fibi(9));
 console.log(fibi(5));
+
+
+
+const fibb = (n, memo) => {
+ 
+ memo = memo || {}
+ if(memo[n]) return memo[n]
+
+  if(n <= 1) return 1
+  return memo[n] = fibb(n - 1, memo) + fibb(n - 2, memo)
+}
+
+const result = fibb(9)
+console.log(result)
+
+
+

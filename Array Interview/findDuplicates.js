@@ -48,7 +48,7 @@ console.log(Duplicates([9, 2, 3, 4, 2, 5, 6, 7, 8, 6]));
 
 function findDuplicates(arr) {
  let obj = {};
- let max = -Infinity;
+
  for (let i = 0; i < arr.length; i++) {
    obj[arr[i]] = obj[arr[i]] + 1 || 1;
  }

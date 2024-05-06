@@ -18,22 +18,20 @@ input.addEventListener("keyup", function (e) {
   betterGoBuy(e.target.value);
 });
 
-   let prev = 0;
-   const now = Date.now()
-   if(now - prev > delay){
-     prev = now
-     return func(...args)
-   }
+let prev = 0;
+const now = Date.now();
+if (now - prev > delay) {
+  prev = now;
+  return func(...args);
+}
 
-
-   
 function greet(name, callback) {
   return callback(name);
 }
 
 function sayHello(name) {
   // return `Hello ${name}`
-  return "Hello"+ " " + name;
+  return "Hello" + " " + name;
 }
 
 console.log(greet("John", sayHello));
